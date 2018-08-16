@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    height:50px;
+    width:70px;
+    border: 2px  solid black;
+    border-radius: 5px;
+}
+
+.container {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+#passmessage {
+    display:block;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message p {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+</style>
+</head>
+<body>
+
+<h3>Password Validation</h3>
+
+<div class="container">
+  <form method="post" action="  ">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+    
+<label for="confirmpassword">Confirm Password</label>
+    <input type="password" id="confirmpassword" name="confirmpassword" required>
+
+<p id="passver"></p>
+    <label for="pincode">PIN Code</label>
+      <input type="number" id = "pin_code" name="pincode" required><br>
+    
+
+    <label for="email">Email-ID</label>
+    <input type="email" id="email" name="emailid">
+    <button  onclick="validate()">Submit</button>  
+  </form>
+</div>
+
+<br>
+<p id="response"></p>
+<div id="passmessage" style="display:none;">
+  <h3>Password must contain the following:</h3>
+  <p id="letter" >A <b>lowercase</b> letter</p><p id="lowercase" ></p>
+  <p id="capital" >A <b>capital (uppercase)</b> letter</p><p id="uppercase"></p>
+  <p id="number" >A <b>number</b></p><p id="numbery"></p>
+  <p id="length" >Minimum <b>8 characters</b></p><p id="8char"></p>
+</div>
+                
+<p id="zipcode"></p>
+<div id="forpin" style="display: none;">
+  <h3>Pin Code Must Contain 6 Numbers Only</h3>
+  <p id="pin"></p>
+</div>
+
+
+<p id="em"></p>
+<div id="forem" style="display:none;">
+  <h3>Email:</h3>
+  <p id="foremail"></p>
+</div>
+<br>
+<br>
+<br>
+<br>    
+
+        
+<script>
+var username = document.getElementById("username"); 
+var pass = document.getElementById("password");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+var flag1=2;
+var flag2=2;
+var flag3=2;
+var flag4=2;
+var flag5=2;
+var flag6=2;
+
+pass.onfocus = function() {
+    document.getElementById("passmessage").style.display = "block";
+}
+pass.onblur = function() {
+    document.getElementById("passmessage").style.display = "none";
+}
+
+pass.onkeyup = function() {
+  var lowerCaseLetters = /[a-z]/g;
+  if(pass.value.match(lowerCaseLetters)) {  
+    document.getElementById("lowercase").innerHTML= "&#10004;";
+    flag1=1;
+  } else {
+    document.getElementById("lowercase").innerHTML= "&#10060;";
+    flag1=0;
+  }
+  
+  var upperCaseLetters = /[A-Z]/g;
+  if(pass.value.match(upperCaseLetters)) {  
+      document.getElementById("uppercase").innerHTML= "&#10004;";
+      flag2=1;
+  } else {
+        document.getElementById("uppercase").innerHTML= "&#10060;";
+        flag2=0;
+  }
+
+  var numbers = /[0-9]/g;
+  if(pass.value.match(numbers)) {  
+         document.getElementById("numbery").innerHTML= "&#10004;";
+        flag3=1;
+  } else {
+         document.getElementById("numbery").innerHTML= "&#10060;";
+         flag3=0;
+  }
+  
+  if(pass.value.length >= 8) {
+             document.getElementById("8char").innerHTML= "&#10004;";
+             flag4=1;
+  } else {
+             document.getElementById("8char").innerHTML= "&#10060;";
+             flag4=0;
+  }
+}
+
+
+var password= document.getElementById("password");
+var confirmpassword= document.getElementById("confirmpassword");
+
+confirmpassword.onkeyup = function()
+{
+    if(password.value == confirmpassword.value)
+    {
+        document.getElementById("passver").innerHTML = "Passwords Match!";
+    }
+    else
+    {
+        document.getElementById("passver").innerHTML = "Passwords do not match!";
+    }
+}
+//PIN CODE
+var pin_code = document.getElementById("pin_code");
+
+pin_code.onfocus = function()
+{
+   document.getElementById("forpin").style.display = "block";
+}
+pin_code.onblur = function()
+{
+   document.getElementById("forpin").style.display = "none";
+}
+pin_code.onkeyup = function()
+{
+if(pin_code.value.length != 6)
+      {
+        document.getElementById("pin").innerHTML="&#10060;";
+        flag5=1;
+      }
+  else{
+        document.getElementById("pin").innerHTML="&#10004;";
+        flag5=0;
+  }
+}
+
+//EMAIL
+
+var email=document.getElementById("email");
+email.onfocus = function()
+{
+  document.getElementById("forem").style.display="block";
+}
+
+email.onblur = function()
+{
+  document.getElementById("forem").style.display = "none";
+}
+
+email.onkeyup = function()
+{
+  if(email.value.match( /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/))
+  {
+    document.getElementById("foremail").innerHTML = "Valid";
+    flag6=1;
+  }
+  else
+  {
+    document.getElementById("foremail").innerHTML = "Not Valid";
+    flag6=0;
+  }
+}
+
+function validate() {
+ var y= document.getElementById("password").value;
+ if(flag1==0 || flag2==0 || flag3 == 0 || flag4 == 0)
+ {
+    alert("Check Your Password");
+ }
+ else if(flag5==0)
+  {
+    alert("Check the Pin code");
+  }
+  else if(flag6==0)
+  {
+    alert("Check the email"); 
+  }
+  else if(flag1==2 || flag2==2 || flag3==2 || flag4==2 || flag5==2 || flag6==2)
+  {
+    alert("Fill All The Fields");
+  }
+  else
+  {
+    alert("Access Granted");
+  }
+}
+</script>
+
+
+</body>
+</html>
