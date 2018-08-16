@@ -1,0 +1,78 @@
+.header {
+    background-color: #34DDE5;
+    padding: 20px;
+    text-align: center;
+  width:97%;
+  height:135px;
+  
+}
+#img1{
+  float:left;
+
+}
+
+
+#imagecontainer1
+{
+  float:left; 
+}
+#imagecontainer2
+{
+  float:right;  
+}
+#imagecontainer3
+{
+  float:left; 
+}
+#imagecontainer4
+{
+  float:right;  
+}
+
+h1{
+  font-size: 50px;
+  color: white;
+}
+
+body{
+  background-image: url("back2.jpg");
+  font-family: 'Allan';
+  font-size: 22px;
+    height: 100%;
+    margin:0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  background-attachment:fixed;
+};
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #1179E1;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #1668B0;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #34DDE5;
+    color: white;
+}
+#text2{
+ 
+	 background-color: #0B9B53;
+	 border:2px solid blue; 
+	 border-radius:20px;
+}
